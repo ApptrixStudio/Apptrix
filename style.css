@@ -78,3 +78,7 @@ footer {
   padding-top: 15px;
   font-size: 14px;
 }
+.logo img{
+height:50px;   /* change this value to increase/decrease size */
+width:auto;
+}
