@@ -1,4 +1,4 @@
-/* RESET */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
@@ -6,13 +6,13 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* BODY */
+/* ================= BODY ================= */
 body {
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   color: #fff;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 nav {
   display: flex;
   justify-content: space-between;
@@ -65,7 +65,7 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* HERO SECTION */
+/* ================= HERO ================= */
 .hero {
   text-align: center;
   padding: 120px 20px;
@@ -82,13 +82,13 @@ nav a:hover::after {
   opacity: 0.9;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 section {
   padding: 70px 40px;
   animation: slideUp 1s ease;
 }
 
-/* CARD */
+/* ================= CARD (GENERAL) ================= */
 .card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -103,7 +103,48 @@ section {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* CONTACT IFRAME */
+/* ================= APPS SECTION ================= */
+.apps-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.app-card {
+  width: 160px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+.app-card img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.app-card h3 {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* ================= CONTACT ================= */
 iframe {
   width: 100%;
   max-width: 640px;
@@ -113,7 +154,7 @@ iframe {
   margin-top: 20px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 footer {
   background: rgba(0, 0, 0, 0.7);
   padding: 40px 20px;
@@ -127,7 +168,7 @@ footer .social a {
   font-weight: 500;
 }
 
-/* ANIMATIONS */
+/* ================= ANIMATIONS ================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
