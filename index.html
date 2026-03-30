@@ -54,6 +54,45 @@
       margin:0 10px; color:#38bdf8; text-decoration:none;
     }
   </style>
+<style>
+/* Apps horizontal square layout */
+.apps-row{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.app-box{
+  width:180px;
+  height:180px;
+  background:#111;
+  border-radius:18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:0.3s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.app-box:hover{
+  transform:translateY(-6px) scale(1.03);
+}
+
+.app-box img{
+  width:80px;
+  height:80px;
+  margin-bottom:12px;
+}
+
+.app-box h3{
+  font-size:15px;
+  color:#fff;
+  text-align:center;
+}
+</style>
 </head>
 <body>
 
@@ -84,35 +123,30 @@
 </section>
 
 <section id="apps">
-  <h2>Our Apps</h2>
+<h2>Our Apps</h2>
 
-  <div class="apps-grid">
-
-    <div class="card">
-      <img src="expense-tracker.png" alt="Expense Tracker">
-      <h3>Expense Tracker</h3>
-      <p>Track income, expenses and savings with clean analytics.</p>
-    </div>
-
-    <div class="card">
-      <img src="calculator-pro.png" alt="Calculator Pro">
-      <h3>Calculator Pro</h3>
-      <p>Fast, accurate calculator with a modern UI.</p>
-    </div>
-
-    <div class="card">
-      <img src="image-to-pdf.png" alt="Image to PDF">
-      <h3>Image to PDF Converter</h3>
-      <p>Convert images into high‑quality PDF files instantly.</p>
-    </div>
-
-    <div class="card">
-      <img src="pdf-scanner.png" alt="PDF Scanner">
-      <h3>PDF Scanner</h3>
-      <p>Scan documents using camera and export as PDFs.</p>
-    </div>
-
+<div class="apps-row">
+  <div class="app-box">
+    <img src="pdf-scanner.png" alt="PDF Scanner">
+    <h3>PDF Scanner</h3>
   </div>
+
+  <div class="app-box">
+    <img src="image-to-pdf.png" alt="Image to PDF Converter">
+    <h3>Image to PDF</h3>
+  </div>
+
+  <div class="app-box">
+    <img src="calculator-pro.png" alt="Calculator Pro">
+    <h3>Calculator Pro</h3>
+  </div>
+
+  <div class="app-box">
+    <img src="expense-tracker.png" alt="Expense Tracker">
+    <h3>Expense Tracker</h3>
+  </div>
+</div>
+
 </section>
 
 <section id="contact">
