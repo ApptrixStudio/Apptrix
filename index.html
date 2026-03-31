@@ -6,6 +6,20 @@
 <title>Apptrix Studio</title>
 
 <style>
+:root{
+  --bg:#0f172a;
+  --card:#020617;
+  --text:#e5e7eb;
+  --accent:#38bdf8;
+}
+
+.light{
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --text:#0f172a;
+  --accent:#2563eb;
+}
+
 *{
   margin:0;
   padding:0;
@@ -14,37 +28,21 @@
 }
 
 body{
-  background:#0f172a;
-  color:#e5e7eb;
-  line-height:1.6;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
 }
 
-/* NAVBAR */
+/* NAV */
 nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px 40px;
-  background:#020617;
+  padding:15px 30px;
+  background:var(--card);
   position:sticky;
   top:0;
-  z-index:10;
-}
-
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:20px;
-}
-
-nav a{
-  color:#e5e7eb;
-  text-decoration:none;
-  font-weight:500;
-}
-
-nav a:hover{
-  color:#38bdf8;
+  z-index:99;
 }
 
 .logo{
@@ -54,24 +52,44 @@ nav a:hover{
   font-weight:bold;
 }
 
-/* HERO */
-.hero{
-  padding:80px 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#1e3a8a,#0ea5e9);
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:20px;
 }
 
+nav a{
+  color:var(--text);
+  text-decoration:none;
+}
+
+.menu-btn{
+  display:none;
+  font-size:24px;
+  cursor:pointer;
+}
+
+.toggle{
+  cursor:pointer;
+  margin-left:15px;
+}
+
+/* HERO */
+.hero{
+  padding:90px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#1e3a8a,var(--accent));
+  color:#fff;
+}
+
+/* SECTION */
 section{
   padding:60px 20px;
   max-width:1100px;
   margin:auto;
 }
 
-h1,h2{
-  margin-bottom:15px;
-}
-
-/* APPS GRID */
+/* APPS */
 .apps-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -79,46 +97,70 @@ h1,h2{
   margin-top:30px;
 }
 
-/* APP CARD */
 .app-card{
-  background:#020617;
-  border-radius:20px;
+  background:var(--card);
   padding:25px;
+  border-radius:20px;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.5);
-  transition:0.35s ease;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  transition:0.4s;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+.app-card.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .app-card:hover{
   transform:translateY(-10px);
-  box-shadow:0 20px 60px rgba(56,189,248,0.4);
+  box-shadow:0 20px 60px rgba(56,189,248,.5);
 }
 
-/* PLAY STORE STYLE ICON */
 .app-card img{
-  width:60px;        /* ~50% smaller */
+  width:60px;
   height:60px;
   border-radius:16px;
   margin-bottom:15px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.download{
+  display:inline-block;
+  margin-top:12px;
+  padding:8px 16px;
+  background:var(--accent);
+  color:white;
+  border-radius:20px;
+  text-decoration:none;
+  font-size:14px;
 }
 
 /* FOOTER */
 footer{
-  background:#020617;
-  padding:40px 20px;
+  background:var(--card);
   text-align:center;
+  padding:40px 20px;
   margin-top:40px;
 }
 
-.social a{
-  margin:0 10px;
-  color:#38bdf8;
-  text-decoration:none;
-}
-
-.social a:hover{
-  text-decoration:underline;
+/* MOBILE */
+@media(max-width:768px){
+  nav ul{
+    position:absolute;
+    top:60px;
+    right:0;
+    background:var(--card);
+    flex-direction:column;
+    width:200px;
+    display:none;
+  }
+  nav ul.show{
+    display:flex;
+  }
+  .menu-btn{
+    display:block;
+  }
 }
 </style>
 </head>
@@ -128,9 +170,15 @@ footer{
 <nav>
   <div class="logo">
     <img src="logo.png" height="40">
-    <span>Apptrix Studio</span>
+    Apptrix Studio
   </div>
-  <ul>
+
+  <div>
+    <span class="menu-btn" onclick="menu()">☰</span>
+    <span class="toggle" onclick="theme()">🌙</span>
+  </div>
+
+  <ul id="menu">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#apps">Apps</a></li>
@@ -138,16 +186,16 @@ footer{
   </ul>
 </nav>
 
-<section id="home" class="hero">
+<section class="hero" id="home">
   <h1>Building Android Apps & Games</h1>
-  <p>Modern, secure and user-friendly Android applications</p>
+  <p>Modern • Secure • User-Friendly</p>
 </section>
 
 <section id="about">
   <h2>About Apptrix Studio</h2>
   <p>
-    Apptrix Studio is an independent Android development studio focused on
-    productivity apps, utilities and tools that solve real-world problems.
+    Independent Android studio creating productivity apps, utilities
+    and tools for everyday users.
   </p>
 </section>
 
@@ -156,48 +204,60 @@ footer{
 
   <div class="apps-grid">
     <div class="app-card">
-      <img src="Cal.png" alt="Calculator Pro">
+      <img src="Cal.png">
       <h3>Calculator Pro</h3>
+      <a class="download" href="#">Download</a>
     </div>
 
     <div class="app-card">
-      <img src="Scanner.png" alt="PDF Scanner">
+      <img src="Scanner.png">
       <h3>PDF Scanner</h3>
+      <a class="download" href="#">Download</a>
     </div>
 
     <div class="app-card">
-      <img src="expense.png" alt="Expense Tracker">
+      <img src="expense.png">
       <h3>Expense Tracker</h3>
+      <a class="download" href="#">Download</a>
     </div>
 
     <div class="app-card">
-      <img src="image to pdf.png" alt="Image to PDF Converter">
-      <h3>Image to PDF Converter</h3>
+      <img src="image to pdf.png">
+      <h3>Image to PDF</h3>
+      <a class="download" href="#">Download</a>
     </div>
   </div>
 </section>
 
 <section id="contact">
   <h2>Contact / Feedback</h2>
-  <p>Send your suggestions or feedback below:</p>
-
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true"
-    width="100%"
-    height="500"
-    frameborder="0">
-  </iframe>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true"
+  width="100%" height="450"></iframe>
 </section>
 
 <footer>
-  <div class="social">
-    <h3>Follow Us</h3>
-    <a href="https://instagram.com/apptrixstudio">Instagram</a>
-    <a href="https://youtube.com/@apptrixstudio">YouTube</a>
-    <a href="https://facebook.com/apptrixstudio">Facebook</a>
-  </div>
   <p>© 2026 Apptrix Studio</p>
 </footer>
+
+<script>
+function theme(){
+  document.body.classList.toggle("light");
+}
+
+function menu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+
+const cards=document.querySelectorAll(".app-card");
+window.addEventListener("scroll",()=>{
+  cards.forEach(c=>{
+    const top=c.getBoundingClientRect().top;
+    if(top<window.innerHeight-50){
+      c.classList.add("show");
+    }
+  });
+});
+</script>
 
 </body>
 </html>
