@@ -1,99 +1,128 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apptrix Studio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apptrix Studio</title>
 
-  <!-- Embedded CSS -->
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-
-    body { background:#0f172a; color:#e5e7eb; line-height:1.6; }
-
-    nav {
-      display:flex; justify-content:space-between; align-items:center;
-      padding:15px 40px; background:#020617; position:sticky; top:0; z-index:10;
-    }
-
-    nav ul { list-style:none; display:flex; gap:20px; }
-    nav a { color:#e5e7eb; text-decoration:none; font-weight:500; }
-    nav a:hover { color:#38bdf8; }
-
-    .logo { display:flex; align-items:center; gap:10px; font-weight:bold; }
-
-    .hero {
-      padding:80px 20px; text-align:center;
-      background:linear-gradient(135deg,#1e3a8a,#0ea5e9);
-    }
-
-    section { padding:60px 20px; max-width:1100px; margin:auto; }
-
-    h1,h2 { margin-bottom:15px; }
-
-    .apps-grid {
-      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:25px; margin-top:30px;
-    }
-
-    .card {
-      background:#020617; border-radius:16px; padding:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,.4); text-align:center;
-    }
-
-    .card img {
-      width:120px; height:120px; border-radius:20px; margin-bottom:15px;
-    }
-
-    footer {
-      background:#020617; padding:40px 20px; text-align:center; margin-top:40px;
-    }
-
-    .social a {
-      margin:0 10px; color:#38bdf8; text-decoration:none;
-    }
-  </style>
 <style>
-/* Apps horizontal square layout */
-.apps-row{
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:#0f172a;
+  color:#e5e7eb;
+  line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:#020617;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+nav ul{
+  list-style:none;
   display:flex;
   gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
+}
+
+nav a{
+  color:#e5e7eb;
+  text-decoration:none;
+  font-weight:500;
+}
+
+nav a:hover{
+  color:#38bdf8;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero{
+  padding:80px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#1e3a8a,#0ea5e9);
+}
+
+section{
+  padding:60px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h1,h2{
+  margin-bottom:15px;
+}
+
+/* APPS GRID */
+.apps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
   margin-top:30px;
 }
 
-.app-box{
-  width:180px;
-  height:180px;
-  background:#111;
-  border-radius:18px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  transition:0.3s ease;
+/* APP CARD */
+.app-card{
+  background:#020617;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+  transition:0.35s ease;
+}
+
+.app-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 60px rgba(56,189,248,0.4);
+}
+
+/* PLAY STORE STYLE ICON */
+.app-card img{
+  width:60px;        /* ~50% smaller */
+  height:60px;
+  border-radius:16px;
+  margin-bottom:15px;
   box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
-.app-box:hover{
-  transform:translateY(-6px) scale(1.03);
-}
-
-.app-box img{
-  width:80px;
-  height:80px;
-  margin-bottom:12px;
-}
-
-.app-box h3{
-  font-size:15px;
-  color:#fff;
+/* FOOTER */
+footer{
+  background:#020617;
+  padding:40px 20px;
   text-align:center;
+  margin-top:40px;
+}
+
+.social a{
+  margin:0 10px;
+  color:#38bdf8;
+  text-decoration:none;
+}
+
+.social a:hover{
+  text-decoration:underline;
 }
 </style>
 </head>
+
 <body>
 
 <nav>
@@ -111,49 +140,53 @@
 
 <section id="home" class="hero">
   <h1>Building Android Apps & Games</h1>
-  <p>Modern, secure and user‑friendly Android applications</p>
+  <p>Modern, secure and user-friendly Android applications</p>
 </section>
 
 <section id="about">
   <h2>About Apptrix Studio</h2>
   <p>
     Apptrix Studio is an independent Android development studio focused on
-    productivity apps, utilities and tools that solve real‑world problems.
+    productivity apps, utilities and tools that solve real-world problems.
   </p>
 </section>
 
 <section id="apps">
-<h2>Our Apps</h2>
+  <h2>Our Apps</h2>
 
-<div class="apps-grid">
-  <div class="app-card">
-    <img src="Cal.png" alt="Calculator Pro">
-    <h3>Calculator Pro</h3>
-  </div>
+  <div class="apps-grid">
+    <div class="app-card">
+      <img src="Cal.png" alt="Calculator Pro">
+      <h3>Calculator Pro</h3>
+    </div>
 
-  <div class="app-card">
-    <img src="Scanner.png" alt="PDF Scanner">
-    <h3>PDF Scanner</h3>
-  </div>
+    <div class="app-card">
+      <img src="Scanner.png" alt="PDF Scanner">
+      <h3>PDF Scanner</h3>
+    </div>
 
-  <div class="app-card">
-    <img src="expense.png" alt="Expense Tracker">
-    <h3>Expense Tracker</h3>
-  </div>
+    <div class="app-card">
+      <img src="expense.png" alt="Expense Tracker">
+      <h3>Expense Tracker</h3>
+    </div>
 
-  <div class="app-card">
-    <img src="image to pdf.png" alt="Image to PDF Converter">
-    <h3>Image to PDF Converter</h3>
+    <div class="app-card">
+      <img src="image to pdf.png" alt="Image to PDF Converter">
+      <h3>Image to PDF Converter</h3>
+    </div>
   </div>
-</div>
 </section>
 
 <section id="contact">
   <h2>Contact / Feedback</h2>
   <p>Send your suggestions or feedback below:</p>
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true"
-    width="100%" height="500" frameborder="0">Loading…</iframe>
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true"
+    width="100%"
+    height="500"
+    frameborder="0">
+  </iframe>
 </section>
 
 <footer>
@@ -168,4 +201,3 @@
 
 </body>
 </html>
-```
