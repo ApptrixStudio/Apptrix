@@ -103,17 +103,27 @@ section {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* ================= APPS SECTION ================= */
+/* ================= APPS SECTION (UPDATED) ================= */
 .apps-grid {
   display: flex;
-  justify-content: center;
   gap: 25px;
-  flex-wrap: wrap;
   margin-top: 40px;
+  overflow-x: auto;          /* NEW */
+  scroll-behavior: smooth;   /* NEW */
+  padding-bottom: 15px;      /* NEW */
+}
+
+.apps-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.apps-grid::-webkit-scrollbar-thumb {
+  background: #00e5ff;
+  border-radius: 10px;
 }
 
 .app-card {
-  width: 160px;
+  min-width: 160px;          /* NEW (prevents wrapping) */
   height: 160px;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(10px);
@@ -144,6 +154,31 @@ section {
   color: #ffffff;
 }
 
+/* ================= SOCIAL SECTION (NEW) ================= */
+.social-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.social-links a {
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.12);
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 500;
+  border: 1px solid #00e5ff;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  background: #00e5ff;
+  color: #000;
+}
+
 /* ================= CONTACT ================= */
 iframe {
   width: 100%;
@@ -159,13 +194,6 @@ footer {
   background: rgba(0, 0, 0, 0.7);
   padding: 40px 20px;
   text-align: center;
-}
-
-footer .social a {
-  color: #00e5ff;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: 500;
 }
 
 /* ================= ANIMATIONS ================= */
