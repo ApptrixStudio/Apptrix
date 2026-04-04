@@ -5,19 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apptrix Studio</title>
 
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0K8KFV5B6G"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-0K8KFV5B6G');
 </script>
-
-
-  
 
 <style>
 :root{
@@ -103,12 +98,23 @@ section{
   margin:auto;
 }
 
-/* APPS */
+/* APPS AUTO SCROLL */
 .apps-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  display:flex;
   gap:30px;
   margin-top:30px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding-bottom:20px;
+}
+
+.apps-grid::-webkit-scrollbar{
+  height:8px;
+}
+
+.apps-grid::-webkit-scrollbar-thumb{
+  background:var(--accent);
+  border-radius:10px;
 }
 
 .app-card{
@@ -118,6 +124,7 @@ section{
   text-align:center;
   box-shadow:0 15px 40px rgba(0,0,0,.4);
   transition:0.4s;
+  min-width:220px;
   opacity:0;
   transform:translateY(30px);
 }
@@ -148,6 +155,30 @@ section{
   border-radius:20px;
   text-decoration:none;
   font-size:14px;
+}
+
+/* SOCIAL */
+.social-links{
+  margin-top:20px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.social-links a{
+  padding:8px 16px;
+  border-radius:20px;
+  background:var(--card);
+  color:var(--text);
+  text-decoration:none;
+  border:1px solid var(--accent);
+  transition:.3s;
+}
+
+.social-links a:hover{
+  background:var(--accent);
+  color:#fff;
 }
 
 /* FOOTER */
@@ -207,65 +238,33 @@ footer{
 
 <section id="about">
   <h2>About Apptrix Studio</h2>
-  <p>
-    Independent Android studio creating productivity apps, utilities
-    and tools for everyday users.
-  </p>
+  <p>Independent Android studio creating productivity apps, utilities and tools for everyday users.</p>
 </section>
 
 <section id="apps">
   <h2>Our Apps Available Soon on Play Store</h2>
 
-  
-
   <div class="apps-grid">
-    <div class="app-card">
-      <img src="Cal.png">
-      <h3>Calculator Pro</h3>
-      <a class="download" href="#">Download</a>
-    </div>
-
-        <div class="app-card">
-      <img src="PS.png">
-      <h3>Punjabi Status</h3>
-      <a class="download" href="#">Download</a>
-    </div>
-    
-
-    <div class="app-card">
-      <img src="Scanner.png">
-      <h3>PDF Scanner</h3>
-      <a class="download" href="#">Download</a>
-    </div>
-
-    <div class="app-card">
-      <img src="expense.png">
-      <h3>Expense Tracker</h3>
-      <a class="download" href="#">Download</a>
-    </div>
-
-    <div class="app-card">
-      <img src="image to pdf.png">
-      <h3>Image to PDF</h3>
-      <a class="download" href="#">Download</a>
-    </div>
+    <div class="app-card"><img src="Cal.png"><h3>Calculator Pro</h3><a class="download" href="#">Download</a></div>
+    <div class="app-card"><img src="PS.png"><h3>Punjabi Status</h3><a class="download" href="#">Download</a></div>
+    <div class="app-card"><img src="Scanner.png"><h3>PDF Scanner</h3><a class="download" href="#">Download</a></div>
+    <div class="app-card"><img src="expense.png"><h3>Expense Tracker</h3><a class="download" href="#">Download</a></div>
+    <div class="app-card"><img src="image to pdf.png"><h3>Image to PDF</h3><a class="download" href="#">Download</a></div>
   </div>
 </section>
 
 <section id="contact">
   <h2>Contact / Feedback</h2>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true"
-  width="100%" height="450"></iframe>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdExampleForm/viewform?embedded=true" width="100%" height="450"></iframe>
 </section>
 
-  <section id="social">
+<section id="social">
   <h2>Follow Apptrix Studio</h2>
   <div class="social-links">
-    <a href="https://facebook.com/ApptrixStudio" target="_blank">Facebook</a>
     <a href="https://instagram.com/ApptrixStudio" target="_blank">Instagram</a>
-    <a href="https://twitter.com/ApptrixStudio" target="_blank">X (Twitter)</a>
     <a href="https://youtube.com/@ApptrixStudio" target="_blank">YouTube</a>
-    <a href="https://github.com/ApptrixStudio" target="_blank">GitHub</a>
+    <a href="https://discord.gg/YOUR_SERVER_LINK" target="_blank">Discord</a>
+    <a href="https://facebook.com/ApptrixStudio" target="_blank">Facebook</a>
   </div>
 </section>
 
@@ -282,18 +281,26 @@ function menu(){
   document.getElementById("menu").classList.toggle("show");
 }
 
+/* Card animation */
 const cards=document.querySelectorAll(".app-card");
 window.addEventListener("scroll",()=>{
   cards.forEach(c=>{
-    const top=c.getBoundingClientRect().top;
-    if(top<window.innerHeight-50){
+    if(c.getBoundingClientRect().top < window.innerHeight-50){
       c.classList.add("show");
     }
-
-
-    
   });
 });
+
+/* Auto scroll apps */
+const appGrid = document.querySelector(".apps-grid");
+let scrollAmount = 0;
+setInterval(()=>{
+  scrollAmount += 260;
+  if(scrollAmount >= appGrid.scrollWidth - appGrid.clientWidth){
+    scrollAmount = 0;
+  }
+  appGrid.scrollTo({ left: scrollAmount, behavior: "smooth" });
+},3000);
 </script>
 
 </body>
